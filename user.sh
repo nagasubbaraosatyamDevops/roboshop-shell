@@ -6,10 +6,12 @@ dnf install nodejs -y
 useradd roboshop
 mkdir /app
 curl -L -o /tmp/user.zip https://roboshop-artifacts.s3.amazonaws.com/user.zip
-cd /app
 unzip /tmp/user.zip
 cd /app
 npm install
+
+dnf install mongodb-org-shell -y
+mongo --host MONGODB-SERVER-IPADDRESS </app/schema/catalogue.js
 systemctl daemon-reload
 systemctl enable user
-systemctl start user
+systemctl restart user
