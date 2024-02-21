@@ -11,7 +11,7 @@ cd /app
 npm install
 
 dnf install mongodb-org-shell -y
-mongo --host mongodb.sdevopsb74.online </app/schema/catalogue.js
+mongo --host mongodb.sdevopsb74.online </app/schema/user.js
 systemctl daemon-reload
 systemctl enable user
 systemctl restart user
