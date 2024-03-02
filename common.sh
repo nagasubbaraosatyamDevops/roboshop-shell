@@ -48,27 +48,29 @@ dnf install mongodb-org-shell -y &>>${log}
 
 echo -e "\e[36m>>>>>>>>>>>> Load ${component} Schema  <<<<<<<<<<<<\e[0m"
 mongo --host mongodb.sdevopsb74.online </app/schema/${component}.js &>>${log}
+
 func_systemd
 
 }
 
 func_java() {
   echo -e "\e[36m>>>>>>>>>>>> Create ${component} Service <<<<<<<<<<<<\e[0m"
-  cp ${component}.service /etc/systemd/system/${component}.service
+  cp ${component}.service /etc/systemd/system/${component}.service &>>${log}
 
   echo -e "\e[36m>>>>>>>>>>>> install maven <<<<<<<<<<<<\e[0m"
-  dnf install maven -y
+  dnf install maven -y &>>${log}
 
   func_appreq
 
   echo -e "\e[36m>>>>>>>>>>>> build ${component} Service <<<<<<<<<<<<\e[0m"
-  mvn clean package
-  mv target/${component}-1.0.jar ${component}.jar
+  mvn clean package &>>${log}
+  mv target/${component}-1.0.jar ${component}.jar &>>${log}
 
   echo -e "\e[36m>>>>>>>>>>>> install my sql client <<<<<<<<<<<<\e[0m"
-  dnf install mysql -y
+  dnf install mysql -y &>>${log}
 
   echo -e "\e[36m>>>>>>>>>>>> load schema <<<<<<<<<<<<\e[0m"
-    mysql -h mysql.sdevopsb74.online -uroot -pRoboShop@1 < /app/schema/${component}.sql
+  mysql -h mysql.sdevopsb74.online -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${log}
+
   func_systemd
 }
