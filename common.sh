@@ -78,11 +78,11 @@ func_java() {
 
 func_python(){
   echo -e "\e[36m>>>>>>>>>>>> install python <<<<<<<<<<<<\e[0m"
-  dnf install python36 gcc python3-devel -y
+  dnf install python36 gcc python3-devel -y &>>${log}
 
   func_appreq
   echo -e "\e[36m>>>>>>>>>>>> requirements <<<<<<<<<<<<\e[0m"
-  pip3.6 install -r requirements.txt
+  pip3.6 install -r requirements.txt &>>${log}
 
   func_systemd
 }
