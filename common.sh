@@ -1,3 +1,4 @@
+log=/tmp/roboshop.log
 func_appreq() {
   echo -e "\e[36m>>>>>>>>>>>> Create Application user <<<<<<<<<<<<\e[0m"
   useradd roboshop &>>${log}
