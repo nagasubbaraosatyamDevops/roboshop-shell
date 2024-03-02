@@ -1,4 +1,4 @@
-nodejs{
+nodejs(){
 log=/tmp/roboshop.log
 echo -e "\e[36m>>>>>>>>>>>> Create {component} Service <<<<<<<<<<<<\e[0m"
 cp {component}.service /etc/systemd/system/{component}.service &>>${log}
@@ -34,7 +34,7 @@ echo -e "\e[36m>>>>>>>>>>>> Install Mongo Client <<<<<<<<<<<<\e[0m"
 dnf install mongodb-org-shell -y &>>${log}
 
 echo -e "\e[36m>>>>>>>>>>>> Load {component} Schema  <<<<<<<<<<<<\e[0m"
-mongo --host mongodb.sdevopsb74.online </app/schema/{component}.js &>>${log}
+mongo --host mongodb.sdevopsb74.online </app/schema/user.js &>>${log}
 
 echo -e "\e[36m>>>>>>>>>>>> Start {component} Service <<<<<<<<<<<<\e[0m"
 systemctl daemon-reload &>>${log}
